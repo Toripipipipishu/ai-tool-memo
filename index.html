@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>AIツール比較メモ</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div class="hero-title"><span class="eyebrow">MY TOOL NOTEBOOK</span><h1>AIツール比較メモ</h1><p>AIツール月額料金のデータベースメモ♪</p></div>
+    <section id="first-guide" class="guide" aria-labelledby="guide-title" hidden>
+      <div aria-live="polite" aria-atomic="true">
+        <p id="guide-progress" class="guide-progress">はじめての使い方 · 1 / 2</p>
+        <h2 id="guide-title">調べたツールをメモしましょう</h2>
+        <p id="guide-message">調べたAIツールの名前・月額料金・コメントを入力すると、比較用のリストを作れますよ ☺️</p>
+      </div>
+      <div class="actions"><button id="guide-next" type="button" class="primary">次へ</button><button id="guide-close" type="button">閉じる</button></div>
+    </section>
+    </header>
+    <p id="storage-warning" class="warning" role="alert" hidden></p>
+    <div class="layout">
+      <section class="panel editor" aria-labelledby="form-title">
+        <h2 id="form-title">ツールを追加</h2>
+        <p class="hint">名前・月額料金は必須です。メモは空欄でも登録できます。</p>
+        <form id="tool-form" novalidate>
+          <label for="tool-name">ツール名 <span>必須</span></label>
+          <input id="tool-name" name="name" maxlength="100" autocomplete="off" required placeholder="例：Alpha">
+          <label for="tool-monthly">月額料金（円） <span>必須</span></label>
+          <input id="tool-monthly" name="monthly" type="text" inputmode="numeric" maxlength="10" required placeholder="0">
+          <p class="hint">0円から999,999,999円までの整数。カンマは不要です。</p>
+          <label for="tool-memo">メモ <span class="optional">任意</span></label>
+          <textarea id="tool-memo" name="memo" maxlength="2000" rows="5" placeholder="用途や、気になったこと"></textarea>
+          <p id="form-error" class="error" role="alert"></p>
+          <div class="actions"><button id="save-button" type="submit" class="primary">追加する</button><button id="cancel-button" type="button" hidden>編集をキャンセル</button></div>
+        </form>
+      </section>
+      <section class="panel collection" aria-labelledby="list-title">
+        <div class="section-head"><h2 id="list-title">保存したツール</h2><span id="count" class="badge"></span></div>
+        <div class="filters"><div><label for="search">名前・メモを検索</label><input id="search" type="search" placeholder="キーワードで絞り込み"></div><div><label for="sort">並び順</label><select id="sort"><option value="original">登録順</option><option value="asc">料金が安い順</option><option value="desc">料金が高い順</option></select></div></div>
+        <ul id="tool-list" class="tool-list"></ul>
+        <p id="empty" class="empty" hidden></p>
+        <div class="footer-actions"><button id="export" type="button">CSVダウンロード</button><button id="reset" type="button" class="danger">初期状態に戻す</button></div>
+        <p class="hint">CSVには検索結果ではなく、保存した全件を出力します。</p>
+      </section>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <footer>このブラウザーに自動保存されます。大切なメモはCSVで保管してください。</footer>
+  </main>
+</body>
+</html>
